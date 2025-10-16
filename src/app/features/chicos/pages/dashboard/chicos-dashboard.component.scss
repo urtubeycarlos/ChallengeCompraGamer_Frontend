@@ -1,0 +1,43 @@
+table {
+    width: 100%;
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+// .table-loader {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 200px;
+// }
+
+.loading-cell {
+    text-align: center;
+    padding: 24px;
+}
+
+.nuevo-chico-button-row {
+    margin: 16px;
+}
+
+// .mat-sort-header-container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     /* Optional: for vertical centering */
+// }
+
+.acciones-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
