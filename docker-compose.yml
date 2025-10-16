@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  angular-app:
+    build:
+      context: .               # Ubicación del Dockerfile
+      dockerfile: Dockerfile   # Nombre del Dockerfile
+    ports:
+      - "80:80"                # Exponer el puerto 80 del contenedor al 80 local
+    restart: always            # Reinicia si se cae
+    container_name: challengecompragamer_frontend
