@@ -1,0 +1,12 @@
+<div class="dialog-header error">
+    <h2 mat-dialog-title>{{ data.title }}</h2>
+</div>
+
+<mat-dialog-content class="dialog-content">
+    {{ data.message }}
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button type="button" (click)="dialogRef.close(false)">Cancelar</button>
+    <button mat-raised-button color="warn" type="button" (click)="dialogRef.close(true)">Confirmar</button>
+</mat-dialog-actions>
