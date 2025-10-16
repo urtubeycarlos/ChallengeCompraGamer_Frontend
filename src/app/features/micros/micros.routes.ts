@@ -5,7 +5,7 @@ import { MicrosDashboardComponent } from './pages/dashboard/micros-dashboard.com
 
 const routes: Routes = [
     { path: '', component: MicrosDashboardComponent },
-    { path: ':id', component: MicroDetailsComponent }
+    { path: ':patente', component: MicroDetailsComponent }
 ];
 
 @NgModule({
