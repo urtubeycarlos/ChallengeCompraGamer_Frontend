@@ -1,0 +1,52 @@
+<button mat-icon-button class="close-button" (click)="cancel()">
+    <mat-icon>close</mat-icon>
+</button>
+
+<h2 mat-dialog-title>Editar chofer</h2>
+
+<form [formGroup]="choferForm" mat-dialog-content>
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>DNI</mat-label>
+        <input matInput formControlName="dni" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Clase de Licencia</mat-label>
+        <mat-select formControlName="claseLicencia">
+            <mat-option *ngFor="let clase of clasesLicencia" [value]="clase">
+                {{ clase }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Telefono</mat-label>
+        <input matInput formControlName="telefono" type="number" />
+    </mat-form-field>
+    <mat-error *ngIf="choferForm.get('telefono')?.hasError('max')">
+        El número no puede superar el máximo permitido
+    </mat-error>
+</form>
+
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting || choferForm.invalid"
+        (click)="submit()">
+        Actualizar
+    </button>
+</div>
+
+<div *ngIf="showFooter" class="footer">
+    <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate"></mat-progress-bar>
+    <app-feedback-dialog *ngIf="resultMessage" [message]="resultMessage" [type]="resultType" (closed)="closeFooter()">
+    </app-feedback-dialog>
+</div>
