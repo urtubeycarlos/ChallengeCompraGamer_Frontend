@@ -287,5 +287,5 @@ Cuando se necesita aplicar una corrección urgente sobre `main` (ya desplegado e
 - [ ] **Integración con SignalR**  
   Incorporar comunicación en tiempo real mediante [SignalR](https://learn.microsoft.com/es-es/aspnet/signalr/overview/getting-started/introduction-to-signalr) para recibir actualizaciones del backend (por ejemplo, cambios de estado en micros, notificaciones o eventos en vivo). Definir un servicio Angular para manejar la conexión, reconexión y suscripción a canales relevantes.  
 
-  - [ ] **Definir protocolo para cambios de firma en endpoints**  
+- [ ] **Definir protocolo para cambios de firma en endpoints**  
   Establecer un procedimiento formal para cuando se modifique la estructura de entrada (`RequestDTO`) o salida (`ResponseDTO`) de un endpoint.
