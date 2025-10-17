@@ -45,13 +45,14 @@ export class ChicoDetailsComponent implements OnInit {
             apellido: [''],
             createdAt: ['']
         });
+        this.chicoForm.disable();
 
         this.microForm = this.fb.group({
             patente: [''],
             marca: [''],
             modelo: ['']
         });
-
+        this.chicoForm.disable();
     }
 
     ngOnInit(): void {
