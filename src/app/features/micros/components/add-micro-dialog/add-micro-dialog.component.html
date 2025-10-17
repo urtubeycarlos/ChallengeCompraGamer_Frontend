@@ -1,0 +1,58 @@
+<button mat-icon-button class="close-button" (click)="cancel()">
+    <mat-icon>close</mat-icon>
+</button>
+
+<h2 mat-dialog-title>Nuevo micro</h2>
+
+<form [formGroup]="microForm" mat-dialog-content>
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Patente</mat-label>
+        <input matInput formControlName="patente" />
+    </mat-form-field>
+    <mat-error *ngIf="microForm.get('patente')?.hasError('maxlength')">
+        La patente no puede superar los 16 caracteres
+    </mat-error>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Marca</mat-label>
+        <input matInput formControlName="marca" />
+    </mat-form-field>
+    <mat-error *ngIf="microForm.get('marca')?.hasError('maxlength')">
+        La marca no puede superar los 64 caracteres
+    </mat-error>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Modelo</mat-label>
+        <input matInput formControlName="modelo" />
+    </mat-form-field>
+    <mat-error *ngIf="microForm.get('modelo')?.hasError('maxlength')">
+        El modelo no puede superar los 64 caracteres
+    </mat-error>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Cantidad Asientos</mat-label>
+        <input matInput formControlName="cantidadAsientos" type="number" />
+        <mat-error *ngIf="microForm.get('cantidadAsientos')?.hasError('max')">
+            El número máximo es de 70 asientos
+        </mat-error>
+        <mat-error *ngIf="microForm.get('cantidadAsientos')?.hasError('min')">
+            El número mínimo es de 1 asiento
+        </mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="microForm.get('cantidadAsientos')?.hasError('max')">
+        No se pueden asignar más de 70 asientos
+    </mat-error>
+</form>
+
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting || microForm.invalid"
+        (click)="submit()">
+        Guardar
+    </button>
+</div>
+
+<div *ngIf="showFooter" class="footer">
+    <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate"></mat-progress-bar>
+    <app-feedback-dialog *ngIf="resultMessage" [message]="resultMessage" [type]="resultType" (closed)="closeFooter()">
+    </app-feedback-dialog>
+</div>

@@ -1,0 +1,17 @@
+.full-width {
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+    color: rgba(0, 0, 0, 0.54); // o blanco si el fondo es oscuro
+}
