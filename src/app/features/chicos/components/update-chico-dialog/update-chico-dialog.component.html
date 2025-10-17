@@ -8,16 +8,25 @@
     <mat-form-field appearance="fill" class="full-width">
         <mat-label>DNI</mat-label>
         <input matInput formControlName="dni" />
+        <mat-error *ngIf="chicoForm.get('dni')?.hasError('maxlength')">
+            El DNI no puede superar los 16 caracteres.
+        </mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="fill" class="full-width">
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="nombre" />
+        <mat-error *ngIf="chicoForm.get('nombre')?.hasError('maxlength')">
+            El nombre no puede superar los 128 caracteres.
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
         <mat-label>Apellido</mat-label>
         <input matInput formControlName="apellido" />
+        <mat-error *ngIf="chicoForm.get('apellido')?.hasError('maxlength')">
+            El apellido no puede superar los 128 caracteres.
+        </mat-error>
     </mat-form-field>
 </form>
 

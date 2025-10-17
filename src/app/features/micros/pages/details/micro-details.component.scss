@@ -1,0 +1,56 @@
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 24px 0 8px;
+    color: #424242;
+}
+
+.readonly-form {
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 16px;
+
+        .form-field {
+            flex: 1 1 calc(33.333% - 16px);
+            min-width: 200px;
+        }
+
+        input[disabled] {
+            color: #212121;
+            font-weight: 500;
+        }
+    }
+}
+
+.green-button {
+    background-color: #4CAF50; // verde Material
+    color: white;
+    font-weight: 500;
+
+    mat-icon {
+        margin-right: 8px;
+        color: white;
+    }
+
+    &:hover {
+        background-color: #43A047; // verde más oscuro al pasar el mouse
+    }
+}
+
+.micro-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+    .readonly-form .form-row .form-field {
+        flex: 1 1 100%;
+    }
+}
+
+.action-buttons {
+    margin: 16px;
+}

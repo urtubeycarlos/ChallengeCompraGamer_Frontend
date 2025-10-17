@@ -13,11 +13,17 @@
     <mat-form-field appearance="fill" class="full-width">
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="nombre" />
+        <mat-error *ngIf="choferForm.get('nombre')?.hasError('maxlength')">
+            El nombre no puede superar los 128 caracteres.
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
         <mat-label>Apellido</mat-label>
         <input matInput formControlName="apellido" />
+        <mat-error *ngIf="choferForm.get('apellido')?.hasError('maxlength')">
+            El apellido no puede superar los 128 caracteres.
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
@@ -32,10 +38,10 @@
     <mat-form-field appearance="fill" class="full-width">
         <mat-label>Telefono</mat-label>
         <input matInput formControlName="telefono" type="number" />
+        <mat-error *ngIf="choferForm.get('telefono')?.hasError('max')">
+            El número no puede superar el máximo permitido
+        </mat-error>
     </mat-form-field>
-    <mat-error *ngIf="choferForm.get('telefono')?.hasError('max')">
-        El número no puede superar el máximo permitido
-    </mat-error>
 </form>
 
 <div mat-dialog-actions align="end">

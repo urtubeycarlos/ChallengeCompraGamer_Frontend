@@ -44,10 +44,10 @@ export class UpdateChicoDialogComponent {
         @Inject(MAT_DIALOG_DATA) public data: Chico 
     ) {
         this.chicoForm = this.fb.group({
-            dni: [{ value: this.data.dni, disabled: true }, Validators.required],
-            nombre: [this.data.nombre, Validators.required],
-            apellido: [this.data.apellido, [Validators.required]]
-        });
+            dni: [{ value: this.data.dni, disabled: true }, [Validators.required, Validators.maxLength(16)]],
+            nombre: [this.data.nombre, [Validators.required, Validators.maxLength(128)]],
+            apellido: [this.data.apellido, [Validators.required, Validators.maxLength(128)]]
+        });        
     }
 
     submit(): void {

@@ -8,17 +8,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelect } from '@angular/material/select';
-import { MatOption } from '@angular/material/autocomplete';
+import { MatAutocomplete, MatAutocompleteModule, MatOption } from '@angular/material/autocomplete';
 import { MatError } from '@angular/material/input';
 import { FeedbackDialogComponent } from '../../../../shared/feedback-dialog/feedback-dialog.component';
 import { ChangeDetectorRef } from '@angular/core';
-import { ChoferesService } from '../../services/choferes.service';
+import { MicrosService } from '../../services/micros.service';
 
 @Component({
-    selector: 'app-add-chofer-dialog',
+    selector: 'app-add-micro-dialog',
     standalone: true,
-    templateUrl: './add-chofer-dialog.component.html',
-    styleUrls: ['./add-chofer-dialog.component.scss'],
+    templateUrl: './add-micro-dialog.component.html',
+    styleUrls: ['./add-micro-dialog.component.scss'],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -31,40 +31,40 @@ import { ChoferesService } from '../../services/choferes.service';
         FeedbackDialogComponent,
         MatSelect,
         MatOption,
-        MatSelect
+        MatSelect,
+        MatAutocomplete,
+        MatAutocompleteModule
     ]
 })
-export class AddChoferDialogComponent {
-    choferForm: FormGroup;
+export class AddMicroDialogComponent {
+    microForm: FormGroup;
     isSubmitting = false;
     showFooter = false;
     resultMessage = '';
     resultType: 'success' | 'error' = 'success';
-    clasesLicencia = ['D', 'D1', 'D2', 'D3', 'E', 'E1'];
 
     constructor(
         private fb: FormBuilder,
-        private dialogRef: MatDialogRef<AddChoferDialogComponent>,
-        private choferesService: ChoferesService,
+        private dialogRef: MatDialogRef<AddMicroDialogComponent>,
+        private microsService: MicrosService,
         private cdr: ChangeDetectorRef
     ) {
-        this.choferForm = this.fb.group({
-            dni: ['', [Validators.required, Validators.maxLength(16)]],
-            nombre: ['', [Validators.required, Validators.maxLength(128)]],
-            apellido: ['', [Validators.required, Validators.maxLength(128)]],
-            claseLicencia: ['', Validators.required],
-            telefono: ['', [Validators.required, Validators.max(2147483647)]] // número menor a int32
+        this.microForm = this.fb.group({
+            patente: ['', [Validators.required, Validators.maxLength(16)]],
+            marca: ['', [Validators.required, Validators.maxLength(64)]],
+            modelo: ['', [Validators.required, Validators.maxLength(64)]],
+            cantidadAsientos: ['', [Validators.required, Validators.min(1), Validators.max(70)]]
         });
     }
 
     submit(): void {
-        if (this.choferForm.invalid) return;
+        if (this.microForm.invalid) return;
 
         this.isSubmitting = true;
         this.showFooter = true;
         this.resultMessage = '';
 
-        this.choferesService.create(this.choferForm.value).subscribe({
+        this.microsService.create(this.microForm.value).subscribe({
             next: () => {
                 this.resultMessage = 'Chofer creado con éxito';
                 this.resultType = 'success';
