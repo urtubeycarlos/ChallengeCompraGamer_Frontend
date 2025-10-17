@@ -42,12 +42,14 @@ export class ChoferDetailsComponent implements OnInit {
             apellido: [''],
             createdAt: ['']
         });
+        this.choferForm.disable();
 
         this.microForm = this.fb.group({
             patente: [''],
             marca: [''],
             modelo: ['']
         });
+        this.microForm.disable();
     }
 
     ngOnInit(): void {

@@ -29,7 +29,7 @@
             <div class="form-row">
                 <mat-form-field appearance="fill" class="form-field">
                     <mat-label>Fecha de Alta</mat-label>
-                    <input matInput [value]="formatFecha(choferForm.value.createdAt)" />
+                    <input matInput [value]="formatFecha(choferForm.value.createdAt)" formControlName="createdAt" />
                 </mat-form-field>
             </div>
         </form>
