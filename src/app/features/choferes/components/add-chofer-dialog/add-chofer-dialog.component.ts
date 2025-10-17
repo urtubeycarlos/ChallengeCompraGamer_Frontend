@@ -49,11 +49,11 @@ export class AddChoferDialogComponent {
         private cdr: ChangeDetectorRef
     ) {
         this.choferForm = this.fb.group({
-            dni: ['', Validators.required],
-            nombre: ['', Validators.required],
-            apellido: ['', [Validators.required]],
+            dni: ['', [Validators.required, Validators.maxLength(16)]],
+            nombre: ['', [Validators.required, Validators.maxLength(128)]],
+            apellido: ['', [Validators.required, Validators.maxLength(128)]],
             claseLicencia: ['', Validators.required],
-            telefono: ['', [Validators.required, Validators.pattern(/^\d+$/)]]
+            telefono: ['', [Validators.required, Validators.max(2147483647)]] // número menor a int32
         });
     }
 
