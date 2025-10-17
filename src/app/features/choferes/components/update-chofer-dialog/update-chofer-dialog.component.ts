@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -46,16 +46,14 @@ export class UpdateChoferDialogComponent {
         private dialogRef: MatDialogRef<UpdateChoferDialogComponent>,
         private choferesService: ChoferesService,
         private cdr: ChangeDetectorRef,
-        @Inject(MAT_DIALOG_DATA) public data: Chofer 
+        @Inject(MAT_DIALOG_DATA) public data: Chofer
     ) {
         this.choferForm = this.fb.group({
             dni: [{ value: this.data.dni, disabled: true }, Validators.required],
-            nombre: [this.data.nombre, Validators.required],
-            apellido: [this.data.apellido, [Validators.required]],
+            nombre: [this.data.nombre, [Validators.required, Validators.maxLength(128)]],
+            apellido: [this.data.apellido, [Validators.required, Validators.maxLength(128)]],
             claseLicencia: [this.data.claseLicencia, Validators.required],
-            telefono: [this.data.telefono, [Validators.required, 
-                                            Validators.max(2147483647) // número menor a int32
-            ]]
+            telefono: [this.data.telefono, [Validators.required, Validators.max(2147483647)]] // número menor a int32
         });
     }
 
