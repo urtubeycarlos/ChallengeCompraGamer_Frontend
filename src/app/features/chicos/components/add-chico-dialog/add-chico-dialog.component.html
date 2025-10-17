@@ -1,0 +1,45 @@
+<button mat-icon-button class="close-button" (click)="cancel()">
+  <mat-icon>close</mat-icon>
+</button>
+
+<h2 mat-dialog-title>Nuevo chico</h2>
+
+<form [formGroup]="chicoForm" mat-dialog-content>
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>DNI</mat-label>
+        <input matInput formControlName="dni" />
+        <mat-error *ngIf="chicoForm.get('dni')?.hasError('maxlength')">
+            El DNI no puede superar los 16 caracteres.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error *ngIf="chicoForm.get('nombre')?.hasError('maxlength')">
+            El nombre no puede superar los 128 caracteres.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" />
+        <mat-error *ngIf="chicoForm.get('apellido')?.hasError('maxlength')">
+            El apellido no puede superar los 128 caracteres.
+        </mat-error>
+    </mat-form-field>
+</form>
+
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting || chicoForm.invalid" (click)="submit()">
+        Guardar
+    </button>
+</div>
+
+<div *ngIf="showFooter" class="footer">
+    <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate"></mat-progress-bar>
+    <app-feedback-dialog *ngIf="resultMessage" [message]="resultMessage" [type]="resultType"
+        (closed)="closeFooter()">
+    </app-feedback-dialog>
+</div>
+

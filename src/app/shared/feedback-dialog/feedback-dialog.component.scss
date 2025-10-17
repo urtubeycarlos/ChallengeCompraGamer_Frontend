@@ -1,0 +1,23 @@
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    margin-top: 12px;
+
+    &.success {
+        background-color: #4caf50; // verde
+    }
+
+    &.error {
+        background-color: #f44336; // rojo
+    }
+
+    .message {
+        flex: 1;
+        margin-left: 8px;
+    }
+}

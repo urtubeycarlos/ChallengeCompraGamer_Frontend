@@ -1,0 +1,68 @@
+<mat-card class="example-card" appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>
+            {{ chicoForm.value.nombre }} {{ chicoForm.value.apellido }} - {{ chicoForm.value.dni }}
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <!-- Sección: Datos Personales -->
+        <h3 class="section-title">Datos Personales</h3>
+        <form [formGroup]="chicoForm" class="readonly-form">
+            <div class="form-row">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>DNI</mat-label>
+                    <input matInput formControlName="dni" />
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="nombre" />
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput formControlName="apellido" />
+                </mat-form-field>
+            </div>
+
+            <div class="form-row">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Fecha de Alta</mat-label>
+                    <input matInput [value]="formatFecha(chicoForm.value.createdAt)" />
+                </mat-form-field>
+            </div>
+        </form>
+
+        <!-- Sección condicional: Datos Micro Asignado -->
+        <ng-container *ngIf="chico?.estaAsignado">
+            <h3 class="section-title">Datos Micro Asignado</h3>
+            <form [formGroup]="microForm" class="readonly-form">
+                <div class="form-row">
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Patente</mat-label>
+                        <input matInput formControlName="patente" />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Marca</mat-label>
+                        <input matInput formControlName="marca" />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Modelo</mat-label>
+                        <input matInput formControlName="modelo" />
+                    </mat-form-field>
+                </div>
+            </form>
+
+            <div class="micro-button-container">
+                <ng-container *ngIf="chico?.micro?.patente">
+                    <button mat-raised-button (click)="verMicro(chico?.micro?.patente)">
+                        Ver información del micro
+                    </button>
+                </ng-container>
+            </div>
+        </ng-container>
+    </mat-card-content>
+</mat-card>

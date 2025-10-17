@@ -1,0 +1,61 @@
+<button mat-icon-button class="close-button" (click)="cancel()">
+    <mat-icon>close</mat-icon>
+</button>
+
+<h2 mat-dialog-title>Nuevo chofer</h2>
+
+<form [formGroup]="choferForm" mat-dialog-content>
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>DNI</mat-label>
+        <input matInput formControlName="dni" />
+        <mat-error *ngIf="choferForm.get('dni')?.hasError('maxlength')">
+            El nombre no puede superar los 16 caracteres.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error *ngIf="choferForm.get('nombre')?.hasError('maxlength')">
+            El nombre no puede superar los 128 caracteres.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" />
+        <mat-error *ngIf="choferForm.get('apellido')?.hasError('maxlength')">
+            El apellido no puede superar los 128 caracteres.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Clase de Licencia</mat-label>
+        <mat-select formControlName="claseLicencia">
+            <mat-option *ngFor="let clase of clasesLicencia" [value]="clase">
+                {{ clase }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Telefono</mat-label>
+        <input matInput formControlName="telefono" type="number" />
+        <mat-error *ngIf="choferForm.get('telefono')?.hasError('max')">
+            El número no puede superar el máximo permitido
+        </mat-error>
+    </mat-form-field>
+</form>
+
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting || choferForm.invalid"
+        (click)="submit()">
+        Guardar
+    </button>
+</div>
+
+<div *ngIf="showFooter" class="footer">
+    <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate"></mat-progress-bar>
+    <app-feedback-dialog *ngIf="resultMessage" [message]="resultMessage" [type]="resultType" (closed)="closeFooter()">
+    </app-feedback-dialog>
+</div>
