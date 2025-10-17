@@ -42,9 +42,9 @@ export class AddChicoDialogComponent {
         private cdr: ChangeDetectorRef
     ) {
         this.chicoForm = this.fb.group({
-            dni: ['', Validators.required],
-            nombre: ['', Validators.required],
-            apellido: ['', [Validators.required]]
+            dni: ['', [Validators.required, Validators.maxLength(16)]],
+            nombre: ['', [Validators.required, Validators.maxLength(128)]],
+            apellido: ['', [Validators.required, Validators.maxLength(128)]]
         });
     }
 
