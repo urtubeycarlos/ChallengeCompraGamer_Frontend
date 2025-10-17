@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+.loading-cell {
+    text-align: center;
+    padding: 24px;
+}
+
+.nuevo-micro-button-row {
+    margin: 16px;
+}
+
+.acciones-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
